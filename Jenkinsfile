@@ -2,24 +2,21 @@ pipeline {
     agent any
 
     stages {
-
         stage('Checkout') {
             steps {
-                echo "Repository cloned"
+                echo 'Repository cloned'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'mvn clean compile'
+                bat 'mvn clean package'
             }
         }
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('SonarQube') {
-                    sh 'mvn sonar:sonar'
-                }
+                bat 'mvn sonar:sonar'
             }
         }
     }
