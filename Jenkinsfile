@@ -1,11 +1,26 @@
-pipeline {  
-    agent any  
-        stages {  
-       	    stage("git_checkout") {  
-           	    steps {  
-              	    echo "cloning repository"
-              	    echo "repo cloned successfully"  
-              	    }  
-         	    } 
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                echo "Repository cloned"
+            }
         }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean compile'
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh 'mvn sonar:sonar'
+                }
+            }
+        }
+    }
 }
