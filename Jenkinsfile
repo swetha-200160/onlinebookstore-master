@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'Maven'
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -16,7 +20,9 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                bat 'mvn sonar:sonar'
+                withSonarQubeEnv('SonarQube') {
+                    bat 'mvn sonar:sonar'
+                }
             }
         }
     }
