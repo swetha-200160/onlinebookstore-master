@@ -2,13 +2,14 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven'
+        maven 'Maven-3.9.16'
     }
 
     stages {
+
         stage('Checkout') {
             steps {
-                echo 'Repository cloned'
+                git 'https://github.com/swetha-200160/onlinebookstore-master.git'
             }
         }
 
@@ -20,9 +21,13 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('SonarQube') {
-                    bat 'mvn sonar:sonar'
-                }
+                bat 'mvn sonar:sonar'
+            }
+        }
+
+        stage('Deploy to Nexus') {
+            steps {
+                bat 'mvn deploy'
             }
         }
     }
