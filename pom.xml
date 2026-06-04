@@ -86,15 +86,15 @@
 
     <!-- ✅ FIXED: Nexus Deployment Section -->
     <distributionManagement>
-        <repository>
-            <id>nexus</id>
-            <url>http://localhost:8081/repository/maven-releases/</url>
-        </repository>
+    <repository>
+        <id>nexus</id>
+        <url>http://localhost:8081/repository/maven-releases2/</url>
+    </repository>
 
-        <snapshotRepository>
-            <id>nexus</id>
-            <url>http://localhost:8081/repository/maven-snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
+    <snapshotRepository>
+        <id>nexus</id>
+        <url>http://localhost:8081/repository/maven-snapshots/</url>
+    </snapshotRepository>
+</distributionManagement>
 
 </project>
